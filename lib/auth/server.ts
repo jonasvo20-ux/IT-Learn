@@ -18,7 +18,9 @@ export const auth = betterAuth({
     requireEmailVerification: !!process.env.SMTP_HOST,
     sendResetPassword: async ({ user, url }) => {
       await smtpTransport!.sendMail({
+        from: process.env.SMTP_FROM,
         to: user.email,
+        subject: "Reset your password – IT-Learn",
         html: forgotPasswordTmpl.replace("{{link}}", url),
       });
     },
@@ -26,7 +28,9 @@ export const auth = betterAuth({
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
       await smtpTransport!.sendMail({
+        from: process.env.SMTP_FROM,
         to: user.email,
+        subject: "Verify your email – IT-Learn",
         html: createAccountTmpl.replace("{{link}}", url),
       });
     },

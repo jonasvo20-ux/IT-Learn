@@ -1,8 +1,11 @@
 import type { Metadata } from 'next'
-import { Footer } from '@/components/Footer'
+import { Inter } from 'next/font/google'
+import Footer from '@/components/Footer'
 import './globals.css'
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 import { TRPCReactProvider } from '@/trpc/client'
-import { Navbar } from '@/components/Navbar'
+import  Navbar  from '@/components/Navbar'
 export const metadata: Metadata = {
   title: 'IT Learn | Discover Your Potential',
   description: 'Learn IT skills and advance your career with IT Learn',
@@ -14,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="antialiased">
-      <body className="bg-background text-text-primary font-sans">
+    <html lang="en" className={`${inter.variable} antialiased`}>
+      <body className="bg-background text-foreground font-sans">
 
         <a
           href="#main-content"
