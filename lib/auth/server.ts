@@ -31,6 +31,14 @@ export const auth = betterAuth({
       });
     },
   },
+  user: {
+    additionalFields: {
+      theme: {
+        type: "string",
+        default: "dark",
+      },
+    }
+  },
   plugins: [
     username(),
     admin(),

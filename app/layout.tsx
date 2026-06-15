@@ -1,38 +1,37 @@
 import type { Metadata } from 'next'
-import { Footer } from '@/components/Footer'
 import './globals.css'
 import { TRPCReactProvider } from '@/trpc/client'
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { auth } from '@/lib/auth/server';
+import { UserProvider } from '@/components/userStore';
+import { headers } from 'next/headers';
+
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
-  title: 'IT Learn | Discover Your Potential',
-  description: 'Learn IT skills and advance your career with IT Learn',
+  title: 'ITLearn | The free code education platform.',
+  description: 'Learn IT skills and advance your career with ITLearn',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const user = await auth.api.getSession({
+    headers: await headers()
+  })
   return (
-    <html lang="en" className="antialiased">
+    <html lang="en" className={cn("antialiased", "font-sans", geist.variable)}>
       <body className="bg-background text-text-primary font-sans">
-
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:shadow-lg"
-        >
-          Skip to main content
-        </a>
-
-        <Navbar />
-
-        <main id="main-content" className="min-h-screen pt-16">
+        <main id="main-content" className="min-h-screen">
           <TRPCReactProvider>
-            {children}
+            <UserProvider user={user}>
+              {children}
+            </UserProvider>
           </TRPCReactProvider>
         </main>
-
-        <Footer />
       </body>
     </html>
   )

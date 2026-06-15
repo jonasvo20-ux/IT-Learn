@@ -19,6 +19,8 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
+  theme       String?   @default("dark")
+
   role       String?
   banned     Boolean?  @default(false)
   banReason  String?
