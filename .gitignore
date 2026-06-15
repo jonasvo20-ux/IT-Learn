@@ -7,3 +7,5 @@ scripts/test-email.mjs
 
 /generated
 /.pnpm-store
+
+.vscode
