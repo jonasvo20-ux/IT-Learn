@@ -21,7 +21,7 @@ export const auth = betterAuth({
         from: process.env.SMTP_FROM,
         to: user.email,
         subject: "Reset your password – IT-Learn",
-        html: forgotPasswordTmpl.replace("{{link}}", url),
+        html: forgotPasswordTmpl.replaceAll("{{link}}", url),
       });
     },
   },
@@ -31,7 +31,7 @@ export const auth = betterAuth({
         from: process.env.SMTP_FROM,
         to: user.email,
         subject: "Verify your email – IT-Learn",
-        html: createAccountTmpl.replace("{{link}}", url),
+        html: createAccountTmpl.replaceAll("{{link}}", url),
       });
     },
   },
