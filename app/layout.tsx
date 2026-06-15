@@ -3,9 +3,14 @@ import { Inter } from 'next/font/google'
 import Footer from '@/components/Footer'
 import './globals.css'
 
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import Footer from '`@/components/Footer`'
+import { TRPCReactProvider } from '`@/trpc/client`'
+import Navbar from '`@/components/Navbar`'
+import './globals.css'
+
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-import { TRPCReactProvider } from '@/trpc/client'
-import  Navbar  from '@/components/Navbar'
 export const metadata: Metadata = {
   title: 'IT Learn | Discover Your Potential',
   description: 'Learn IT skills and advance your career with IT Learn',
