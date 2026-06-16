@@ -1,5 +1,5 @@
 ﻿# IT Learn with next.js 
-# ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/IT-Learn-official/IT-Learn?utm_source=oss&utm_medium=github&utm_campaign=IT-Learn-official%2FIT-Learn&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
+ 
 How to run:
 ```bash
 npm install
