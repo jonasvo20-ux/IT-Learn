@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 import { TRPCReactProvider } from '@/trpc/client'
 import { auth } from '@/lib/auth/server'
 import { UserProvider } from '@/components/userStore'
@@ -42,6 +43,8 @@ export default async function RootLayout({
             </UserProvider>
           </TRPCReactProvider>
         </main>
+
+        <Footer />
       </body>
     </html>
   )

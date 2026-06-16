@@ -14,12 +14,16 @@ export default function SignInPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
-    const { error } = await authClient.signIn.username({ username, password })
-    if (error) {
-      setError(error.message ?? "Failed to sign in")
-      return
+    try {
+      const { error } = await authClient.signIn.username({ username, password })
+      if (error) {
+        setError(error.message ?? "Failed to sign in")
+        return
+      }
+      router.push("/")
+    } catch {
+      setError("An error occurred during sign in")
     }
-    router.push("/")
   }
 
   return (

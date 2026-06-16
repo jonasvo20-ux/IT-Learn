@@ -14,8 +14,8 @@ export const auth = betterAuth({
   // we do ! on the smtptransport because if the SMTP_HOST is not set
   // the email features will be disabled and the sendMail function will never be called
   emailAndPassword: {
-    enabled: !!process.env.SMTP_HOST,
-    requireEmailVerification: !!process.env.SMTP_HOST,
+    enabled: !!process.env.SMTP_HOST && !!process.env.SMTP_FROM,
+    requireEmailVerification: !!process.env.SMTP_HOST && !!process.env.SMTP_FROM,
     sendResetPassword: async ({ user, url }) => {
       await smtpTransport!.sendMail({
         from: process.env.SMTP_FROM,

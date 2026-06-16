@@ -16,17 +16,21 @@ export default function SignUpPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
-    const { error } = await authClient.signUp.email({
-      name,
-      username,
-      email,
-      password,
-    })
-    if (error) {
-      setError(error.message ?? "Failed to sign up")
-      return
+    try {
+      const { error } = await authClient.signUp.email({
+        name,
+        username,
+        email,
+        password,
+      })
+      if (error) {
+        setError(error.message ?? "Failed to sign up")
+        return
+      }
+      router.push("/login")
+    } catch {
+      setError("An error occurred during sign up")
     }
-    router.push("/login")
   }
 
   return (
