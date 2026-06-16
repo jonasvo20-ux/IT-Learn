@@ -3,5 +3,8 @@ node_modules
 next-env.d.ts
 .env
 
+scripts/test-email.mjs
+
 /generated
 /.pnpm-store
+

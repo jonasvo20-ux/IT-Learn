@@ -5,7 +5,7 @@ import { createContext, useContext } from 'react'
 
 type SessionData = typeof authClient.$Infer.Session
 
-const UserContext = createContext<SessionData | null>(null)
+const UserContext = createContext<SessionData | null | undefined>(undefined)
 
 export function UserProvider({
   user,

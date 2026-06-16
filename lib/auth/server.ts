@@ -14,20 +14,24 @@ export const auth = betterAuth({
   // we do ! on the smtptransport because if the SMTP_HOST is not set
   // the email features will be disabled and the sendMail function will never be called
   emailAndPassword: {
-    enabled: !!process.env.SMTP_HOST,
-    requireEmailVerification: !!process.env.SMTP_HOST,
+    enabled: !!process.env.SMTP_HOST && !!process.env.SMTP_FROM,
+    requireEmailVerification: !!process.env.SMTP_HOST && !!process.env.SMTP_FROM,
     sendResetPassword: async ({ user, url }) => {
       await smtpTransport!.sendMail({
+        from: process.env.SMTP_FROM,
         to: user.email,
-        html: forgotPasswordTmpl.replace("{{link}}", url),
+        subject: "Reset your password – IT-Learn",
+        html: forgotPasswordTmpl.replaceAll("{{link}}", url),
       });
     },
   },
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
       await smtpTransport!.sendMail({
+        from: process.env.SMTP_FROM,
         to: user.email,
-        html: createAccountTmpl.replace("{{link}}", url),
+        subject: "Verify your email – IT-Learn",
+        html: createAccountTmpl.replaceAll("{{link}}", url),
       });
     },
   },
